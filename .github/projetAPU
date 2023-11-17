@@ -36,7 +36,8 @@ def Move():
     j = 9
     pos = board[i, j]
     while True:
-        print('''Tapez H pour monter
+        print('''
+	    Tapez H pour monter
             Tapez B pour descendre
             Tapez G pour aller a gauche
             Tapez D pour allez à droite''')
