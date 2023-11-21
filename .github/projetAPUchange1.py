@@ -1,10 +1,5 @@
 import numpy as np
 
-#inport biblio python pour corriger le code
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
-
 
 #i, j
 board = np.array([
@@ -104,14 +99,14 @@ def Move():
 
 #CODE PRINCIPAL 
 
-regles = '''A chaque tour, le fantome peut se déplacer dans une pi`ece/case contigüe à la case dans lequel il se trouve. 
+regles = '''A chaque tour, le fantome peut se déplacer dans une piece/case contigüe à la case dans lequel il se trouve. 
 Cette case peut contenir de l'énergie sous forme de pintes d’ectoplasme vert ou bien un ennemi.
 
 Liste des ennemis :
 • Le maitre du chateau - qui veut garder le fantôme car c’est une bonne attraction touristique - il renvoie le
-fantôme dans la case reception. Lorsque le fantôme est `a 1 case du maitre du chateau il entend les cl`es de son
+fantôme dans la case reception. Lorsque le fantôme est a 1 case du maitre du chateau il entend les cles de son
 trousseau.
-• Le savant fou, prend 1 pinte d’´energie et transporte Gasper dans une case de son choix. Lorsque le fantôme est
+• Le savant fou, prend 1 pinte d’energie et transporte Gasper dans une case de son choix. Lorsque le fantôme est
 à une case du savant il entend son rire sardonique.
 • 3 Bibbendum Chamallow - il déverse sa mousse sur le fantôme et le paralyse en lui prenant 2 pintes d’énergie.
 Lorsque le fantôme est à une case du Bibbendum il sent l’odeur alléchante du chamallow fraise'''
