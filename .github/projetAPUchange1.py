@@ -1,5 +1,11 @@
 import numpy as np
 
+#inport biblio python pour corriger le code
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+
 #i, j
 board = np.array([
     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0],
