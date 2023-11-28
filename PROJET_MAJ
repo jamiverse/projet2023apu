@@ -100,16 +100,20 @@ def Voisins(salles):
 
 def Move(salles, board, rows, cols):
     joueur = 19
-   
-
+    
     for i in range(14):
         if salles[i]["joueur"]:
             board[rows[i]][cols[i]] = joueur
             print_board(board, characters)
+            print("Type X to exit the game")
             print("Vous êtes dans la salle", i)
             print("Vous pouvez vous déplacer dans les salles suivantes :", salles[i]["voisins"])
             print("Dans quelle salle souhaitez-vous vous déplacer ?")
-            choix = int(input())
+            choix = (input())
+            if choix.upper() == "X":
+                exit()
+
+            choix = int(choix)
 
             if choix in salles[i]["voisins"]:
                 salles[i]["joueur"] = False
@@ -121,6 +125,9 @@ def Move(salles, board, rows, cols):
 
         board[rows[i]][cols[i]] = i
 
+
+
+        
 
 
 
@@ -141,4 +148,6 @@ salles[0]["joueur"] = True
 
 while salles[13]["joueur"] == False:
     Move(salles, board, rows, cols)
+print("_____________________________________________________________")
 print("Vous avez gagné !")
+print("_____________________________________________________________")
