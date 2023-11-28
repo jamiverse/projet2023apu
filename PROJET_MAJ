@@ -1,125 +1,126 @@
-import numpy as np
 
-# i, j
-board = np.array([
-    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 130, 2, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0],
-    [2, 90, 2, 1, 1, 4, 1, 1, 2, 100, 2, 1, 4, 1, 1, 2, 110, 2, 1, 4, 1, 1, 2, 120, 2, 0, 0, 0, 0, 0],
-    [0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0],
-    [2, 50, 2, 1, 1, 4, 1, 1, 2, 60, 2, 1, 1, 4, 1, 1, 2, 70, 2, 1, 1, 4, 1, 1, 2, 80, 2, 0, 0, 0],
-    [0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0],
-    [2, 10, 2, 1, 1, 4, 1, 1, 2, 20, 2, 1, 1, 4, 1, 1, 2, 30, 2, 1, 1, 4, 1, 1, 2, 40, 2, 0, 0, 0],
-    [0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 4, 1, 1, 2, 5, 2, 1, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-])
+board = [
+    [15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 15, 15, 15, 15, 17, 13, 17, 15, 15, 15, 15, 15, 15, 15],
+    [15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 15],
+    [17, 9, 17, 16, 16, 18, 16, 16, 17, 10, 17, 16, 18, 16, 16, 17, 11, 17, 16, 18, 16, 16, 17, 12, 17, 15, 15, 15, 15, 15],
+    [15, 18, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 18, 15, 15, 15, 15],
+    [17, 5, 17, 16, 16, 18, 16, 16, 17, 6, 17, 16, 16, 18, 16, 16, 17, 7, 17, 16, 16, 18, 16, 16, 17, 8, 17, 15, 15, 15],
+    [15, 18, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 18, 15, 15, 15, 15],
+    [17, 1, 17, 16, 16, 18, 16, 16, 17, 2, 17, 16, 16, 18, 16, 16, 17, 3, 17, 16, 16, 18, 16, 16, 17, 4, 17, 15, 15, 15],
+    [15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 18, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+    [15, 15, 15, 15, 15, 18, 16, 16, 17, 0, 17, 16, 16, 18, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+]
+
 
 characters = {
     #Dessin
-    0: ' ',
-    1: '.',
-    2: '|',
-    3: 'O',
-    4: ':',
-    5: 'X',
+    15: ' ',
+    16: '.',
+    17: '|',
+    18: ':',
+    19: 'X',
 
     #Pièces
-    130: 'E',
-    120: 12,
-    110: 11,
-    100: 10,
-    90: 9,
-    80: 8,
-    70: 7,
-    60: 6,
-    50: 5,
-    40: 4,
-    30: 3,
-    20: 2,
-    10: 1
+    13: 'E',
+    12: 12,
+    11: 11,
+    10: 10,
+    9: 9,
+    8: 8,
+    7: 7,
+    6: 6,
+    5: 5,
+    4: 4,
+    3: 3,
+    2: 2,
+    1: 1,
+    0: 0
 
 }
 
-def Coor():
-    p13 = [0, 21]
-    p12 = [2, 23]
-    p11 = [2, 16]
-    p10 = [2, 9]
-    p9 = [2, 1]
-    p8 = [4, 25]
-    p7 = [4, 17]
-    p6 = [4, 9]
-    p5 = [4, 1]
-    p4 = [6, 25]
-    p3 = [6, 17]
-    p2 = [6, 9]
-    p1 = [6, 1]
-    p0 = [8, 9]
+def Menu():
+    regles = '''A chaque tour, le fantome peut se déplacer dans une pi`ece/case contigüe à la case dans lequel il se trouve. 
+    Cette case peut contenir de l'énergie sous forme de pintes d’ectoplasme vert ou bien un ennemi.
 
-    salles = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13]
-    voisins = {}
+    Liste des ennemis :
+    • Le maitre du chateau - qui veut garder le fantôme car c’est une bonne attraction touristique - il renvoie le
+    fantôme dans la case reception. Lorsque le fantôme est `a 1 case du maitre du chateau il entend les cl`es de son
+    trousseau.
+    • Le savant fou, prend 1 pinte d’´energie et transporte Gasper dans une case de son choix. Lorsque le fantôme est
+    à une case du savant il entend son rire sardonique.
+    • 3 Bibbendum Chamallow - il déverse sa mousse sur le fantôme et le paralyse en lui prenant 2 pintes d’énergie.
+    Lorsque le fantôme est à une case du Bibbendum il sent l’odeur alléchante du chamallow fraise'''
 
-    for i in range(len(salles)):
-        voisins[i] = []
+    print("----------\nBienvenue!\n----------")
+    print("RÈGLES DU JEU : ", regles)
 
-    voisins[0] = [1, 2, 3]
-    voisins[1] = [0, 2, 5, 6]
-    voisins[2] = [0, 1, 3, 5, 6, 7]
-    voisins[3] = [0, 2, 4, 6, 7, 8]
-    voisins[4] = [3, 7, 8]
-    voisins[5] = [1, 2, 6, 9, 10]
-    voisins[6] = [1, 2, 3, 5, 7, 9, 10, 11]
-    voisins[7] = [2, 3, 4, 6, 8, 10, 11, 12]
-    voisins[8] = [3, 4, 5, 7]
-    voisins[9] = [5, 6, 10]
-    voisins[10] = [5, 6, 7, 9, 11]
-    voisins[11] = [6, 7, 8, 10, 12, 13]
-    voisins[12] = [8, 11, 13]
-    voisins[13] = [11, 12]
-
-    return salles, voisins
-
-salles, voisins = Coor()
-
-def Print_board():
-    for i in board:
-        for j in i:
-            print(characters[j], end='')
+#write a function that prints the board
+def print_board(board, characters):
+    for row in board:
+        for cell in row:
+            print(characters[cell], end="")
         print()
 
-def deplacements(pos):
-    i, j = salles[pos]
-    caractere = board[i, j]
-
-    # Position actuelle et pièces accessibles
-    print(f"Position: {pos}")
-    print(f"Pièces voisines: {voisins[pos]}")
-
-    # Choix du joueur
-    choix = int(input("Choisissez une pièce: "))
-    prev_pos = pos
-
-    # Vérifie validité du choix
-    if choix in voisins[pos]:
-    # MAJ de la position
-        board[i, j] = pos  # 
-        new_i, new_j = salles[choix]
-        board[new_i, new_j] = 5
-
-        return choix
-    else:
-        print("Vous ne pouvez pas aller là.")
-
-    # Si position invalide : revenir a position précédente
-    return pos
+print_board(board, characters)
 
 
-# CODE PRINCIPAL
+def Info(salles):
+    for i in range(14):
+        salles[i] = {
+            "voisins": '',
+            "savant": False,
+            "pintes": '',
+            "joueur": False
+        }
 
-# Position de départ : 0 
-pos_joueur = 0
+    
+
+
+def Voisins(salles):
+    salles[0]['voisins'] = [1, 2, 3]
+    salles[1]['voisins'] = [0, 2, 5, 6]
+    salles[2]['voisins'] = [0, 1, 3, 5, 6, 7]
+    salles[3]['voisins'] = [0, 2, 4, 6, 7, 8]
+    salles[4]['voisins'] = [3, 7, 8]
+    salles[5]['voisins'] = [1, 2, 6, 9, 10]
+    salles[6]['voisins'] = [1, 2, 3, 5, 7, 9, 10, 11]
+    salles[7]['voisins'] = [2, 3, 4, 6, 8, 10, 11, 12]
+    salles[8]['voisins'] = [3, 4, 5, 7]
+    salles[9]['voisins'] = [5, 6, 10]
+    salles[10]['voisins'] = [5, 6, 7, 9, 11]
+    salles[11]['voisins'] = [6, 7, 8, 10, 12, 13]
+    salles[12]['voisins'] = [8, 11, 13]
+    salles[13]['voisins'] = [11, 12]
+    
+
+def Move(salles):
+    for i in range(14):
+        if salles[i]["joueur"] == True:
+            print("Vous êtes dans la salle", i)
+            print("Vous pouvez vous déplacer dans les salles suivantes :", salles[i]["voisins"])
+            print("Dans quelle salle souhaitez-vous vous déplacer ?")
+            choix = int(input())
+            if choix in salles[i]["voisins"]:
+                salles[i]["joueur"] = False
+                salles[choix]["joueur"] = True
+                print("Vous êtes maintenant dans la salle", choix)
+                return salles
+            else:
+                print("Vous ne pouvez pas vous déplacer dans cette salle.")
+                return salles
+
+
+
+
+
+#code principal 
+salles = {}
+Info(salles)
+Menu()
+
+Voisins(salles)
+salles[0]["joueur"] = True
 
 while True:
-    Print_board()
-
-    # Déplacement et MAJ
-    pos_joueur = deplacements(pos_joueur)
+    print_board(board, characters)
+    Move(salles)
