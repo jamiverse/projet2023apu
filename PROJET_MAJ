@@ -12,6 +12,8 @@ board = [
 ]
 
 
+
+
 characters = {
     #Dessin
     15: ' ',
@@ -39,14 +41,14 @@ characters = {
 }
 
 def Menu():
-    regles = '''A chaque tour, le fantome peut se déplacer dans une pi`ece/case contigüe à la case dans lequel il se trouve. 
+    regles = '''A chaque tour, le fantome peut se déplacer dans une pièce/case contigüe à la case dans lequel il se trouve. 
     Cette case peut contenir de l'énergie sous forme de pintes d’ectoplasme vert ou bien un ennemi.
 
     Liste des ennemis :
     • Le maitre du chateau - qui veut garder le fantôme car c’est une bonne attraction touristique - il renvoie le
-    fantôme dans la case reception. Lorsque le fantôme est `a 1 case du maitre du chateau il entend les cl`es de son
+    fantôme dans la case reception. Lorsque le fantôme est à 1 case du maitre du chateau il entend les clés de son
     trousseau.
-    • Le savant fou, prend 1 pinte d’´energie et transporte Gasper dans une case de son choix. Lorsque le fantôme est
+    • Le savant fou, prend 1 pinte d’énergie et transporte Gasper dans une case de son choix. Lorsque le fantôme est
     à une case du savant il entend son rire sardonique.
     • 3 Bibbendum Chamallow - il déverse sa mousse sur le fantôme et le paralyse en lui prenant 2 pintes d’énergie.
     Lorsque le fantôme est à une case du Bibbendum il sent l’odeur alléchante du chamallow fraise'''
@@ -85,29 +87,40 @@ def Voisins(salles):
     salles[5]['voisins'] = [1, 2, 6, 9, 10]
     salles[6]['voisins'] = [1, 2, 3, 5, 7, 9, 10, 11]
     salles[7]['voisins'] = [2, 3, 4, 6, 8, 10, 11, 12]
-    salles[8]['voisins'] = [3, 4, 5, 7]
-    salles[9]['voisins'] = [5, 6, 10]
+    salles[8]['voisins'] = [3, 4, 7, 11, 12]
+    salles[9]['voisins'] = [5, 6, 10, 11]
     salles[10]['voisins'] = [5, 6, 7, 9, 11]
-    salles[11]['voisins'] = [6, 7, 8, 10, 12, 13]
-    salles[12]['voisins'] = [8, 11, 13]
+    salles[11]['voisins'] = [6, 7, 8, 9, 10, 12, 13]
+    salles[12]['voisins'] = [7, 8, 11, 13]
     salles[13]['voisins'] = [11, 12]
-    
 
-def Move(salles):
+
+
+
+
+def Move(salles, board, rows, cols):
+    joueur = 19
+   
+
     for i in range(14):
-        if salles[i]["joueur"] == True:
+        if salles[i]["joueur"]:
+            board[rows[i]][cols[i]] = joueur
+            print_board(board, characters)
             print("Vous êtes dans la salle", i)
             print("Vous pouvez vous déplacer dans les salles suivantes :", salles[i]["voisins"])
             print("Dans quelle salle souhaitez-vous vous déplacer ?")
             choix = int(input())
+
             if choix in salles[i]["voisins"]:
                 salles[i]["joueur"] = False
                 salles[choix]["joueur"] = True
                 print("Vous êtes maintenant dans la salle", choix)
-                return salles
             else:
                 print("Vous ne pouvez pas vous déplacer dans cette salle.")
-                return salles
+            return salles
+
+        board[rows[i]][cols[i]] = i
+
 
 
 
@@ -115,12 +128,17 @@ def Move(salles):
 
 #code principal 
 salles = {}
+
+rows = [8, 6, 6, 6, 6, 4, 4, 4, 4, 2, 2, 2, 2, 0]
+cols = [9, 1, 9, 17, 25, 1, 9, 17, 25, 1, 9, 16, 23, 21]
+
+
 Info(salles)
 Menu()
 
 Voisins(salles)
 salles[0]["joueur"] = True
 
-while True:
-    print_board(board, characters)
-    Move(salles)
+while salles[13]["joueur"] == False:
+    Move(salles, board, rows, cols)
+print("Vous avez gagné !")
