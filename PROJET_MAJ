@@ -100,20 +100,16 @@ def Voisins(salles):
 
 def Move(salles, board, rows, cols):
     joueur = 19
-    
+   
+
     for i in range(14):
         if salles[i]["joueur"]:
             board[rows[i]][cols[i]] = joueur
             print_board(board, characters)
-            print("Type X to exit the game")
             print("Vous êtes dans la salle", i)
             print("Vous pouvez vous déplacer dans les salles suivantes :", salles[i]["voisins"])
             print("Dans quelle salle souhaitez-vous vous déplacer ?")
-            choix = (input())
-            if choix.upper() == "X":
-                exit()
-
-            choix = int(choix)
+            choix = int(input())
 
             if choix in salles[i]["voisins"]:
                 salles[i]["joueur"] = False
@@ -121,19 +117,72 @@ def Move(salles, board, rows, cols):
                 print("Vous êtes maintenant dans la salle", choix)
             else:
                 print("Vous ne pouvez pas vous déplacer dans cette salle.")
+            board[rows[i]][cols[i]] = i
             return salles
-
-        board[rows[i]][cols[i]] = i
-
-
-
         
+    
+def Savant_fou (salles,personnage_HP):
+    personnage_HP  -= 1
+    if personnage_HP > 0 :
+        print ("il vous reste",personnage_HP," pintes d'energies")
+    
+    for i in range (14) : 
+        if salles[i]["joueur"] == True:
+            salle_savant = i
+            salles[i]['joueur'] = False # supprime le joueur de la case actuelle
+
+    numero_salle = random.randint(0,13)
+    while numero_salle == salle_savant :
+         numero_salle = random.randint(0,13)
+    salles[numero_salle]["joueur"] = True
+
+# ------------------------------------------------------------------ 
+def Maitre_chateau (salles) :
+    for i in range(14):
+        if salles[i]["joueur"] == True:
+             salles[i]['joueur'] = False # supprime le joueur de la case actuelle
+
+    salles[0]['joueur'] = True # renvoie le joueur a la case depart
 
 
+def Chamallow (personnage_HP):
+    personnage_HP -= 2
+    if personnage_HP > 0 :
+        print ("il vous reste",personnage_HP ["fantome"]," pintes d'energies")
 
 
+def placement_items(salles) :
+    # PLACEMENT MECHANT
+    salles_chamallow = random.sample(range(1,13),3)
+    for i in range (3) :
+        salles[salles_chamallow[i]]["chamallow"] = True
+    salle_maitre = random.randint(1,12)
+    while salle_maitre in salles_chamallow :
+        salle_maitre = random.randint(1,12)
+    salles[salle_maitre]["maitre"] = True
+    salle_savant = random.randint(1,12)
+    while salle_maitre == salle_savant or salle_savant in salles_chamallow :
+        salle_savant = random.randint(1,12)
+    salles[salle_savant]["savant"] = True
+
+    # PLACEMENT PINTES
+    salles_pintes = random.sample(range(1,13),5)
+    nb_pintes_tot = 0
+    for i in salles_pintes :
+        while i == salles_chamallow or  i == salle_maitre or  i == salle_savant :
+            i = random.randint(1,12)
+        nb_pintes = random.randint(1,3)
+        if nb_pintes_tot == 5 :
+            break
+        while nb_pintes_tot + nb_pintes > 5 :
+            nb_pintes = random.randint(1,3)
+        nb_pintes_tot += nb_pintes
+        salles[i]["pintes"] = nb_pintes
+            
+# --------------------------------------------------------------------------------------------------
 
 #code principal 
+import random
 salles = {}
 
 rows = [8, 6, 6, 6, 6, 4, 4, 4, 4, 2, 2, 2, 2, 0]
@@ -148,6 +197,4 @@ salles[0]["joueur"] = True
 
 while salles[13]["joueur"] == False:
     Move(salles, board, rows, cols)
-print("_____________________________________________________________")
 print("Vous avez gagné !")
-print("_____________________________________________________________")
