@@ -63,7 +63,6 @@ def print_board(board, characters):
             print(characters[cell], end="")
         print()
 
-print_board(board, characters)
 
 
 def Info(salles):
@@ -109,6 +108,7 @@ def Move(salles, board, rows, cols,personnage_HP):
             board[rows[i]][cols[i]] = joueur
             print_board(board, characters)
             print("\nVous êtes dans la salle", i,)
+            # if salles[i]["pintes"]
             print ("Vous avez",personnage_HP," pintes d'energies\n")
             voisins_son(salles)
             print("\nVous pouvez vous déplacer dans les salles suivantes :", salles[i]["voisins"])
@@ -118,7 +118,15 @@ def Move(salles, board, rows, cols,personnage_HP):
             if choix in salles[i]["voisins"]:
                 salles[i]["joueur"] = False
                 salles[choix]["joueur"] = True
-                print("\n\n\n\n\n\n\n\nVous voulez vous deplacer dans la salle", choix,"\n")
+                print("\n\n\n\n\n\n\n\nVous vous deplacer dans la salle", choix,"\n")
+                if salles[choix]["maitre"] == True :
+                    print("Malheureusement, vous entrez entré dans la piece du Maitre du chateau... Vous retournez donc à la reception\n")
+                if salles[choix]["savant"] == True :
+                    print("Malheureusement, vous entrez dans la piece du Savant... Vous perdez une pinte et vous vous faites deplacer dans une piece aléatoire\n")
+                if salles[choix]["chamallow"] == True :
+                    print("Malheureusement, vous entrez entré dans la piece d'un Bibbendum... Vous perdez donc 2 pintes\n")
+                if salles[choix]["pintes"] == True :
+                    print("Vous avez de la chance, vous entrez dans une piece contenant des pintes, vous recuperez entre 1 et 3 pintes\n")
             else:
                 print("\n\n\n\n\n\n\n\nVous ne pouvez pas vous déplacer dans cette salle.\n")
             board[rows[i]][cols[i]] = i
@@ -182,7 +190,7 @@ def Chamallow (personnage_HP):
         print ("Vous avez perdu 2 pintes d'energies\n")
     return personnage_HP
 
-def meet_Mechant(salles,personnage_HP) :
+def meet_items(salles,personnage_HP) :
     for i in range(1,13) :
         if salles[i]["joueur"] == True :
             if salles[i]["chamallow"] == True :
@@ -193,6 +201,7 @@ def meet_Mechant(salles,personnage_HP) :
                 personnage_HP = Savant_fou(salles,personnage_HP)
             if salles[i]["pintes"] == True :
                 personnage_HP = personnage_HP + random.randint(1,3)
+                salles[i]["pintes"] = False
     return personnage_HP
     
 def voisins_son(salles) :
@@ -227,7 +236,7 @@ placement_items(salles)
 
 while salles[13]["joueur"] == False:
     Move(salles, board, rows, cols, personnage_HP)
-    personnage_HP = meet_Mechant(salles,personnage_HP)
+    personnage_HP = meet_items(salles,personnage_HP)
     if personnage_HP <= 0:
         break
 if personnage_HP <= 0: 
